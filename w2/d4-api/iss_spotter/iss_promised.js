@@ -1,8 +1,7 @@
 const request = require('request-promise-native');
 
 const fetchMyIP = function() {
- 
-  return request('https://api.ipify.org?format=json')
+   return request('https://api.ipify.org?format=json')
 }
 
 const fetchCoordsByIP = function(body) {
@@ -11,9 +10,9 @@ const fetchCoordsByIP = function(body) {
 };
 
 const fetchISSFlyOverTimes = function(body) {
-  const latitude = JSON.parse(body).data.latitude;
-  const longitude = JSON.parse(body).data.longitude;
-  const url = `http://api.open-notify.org/iss-now.json=${latitude}&lon=${longitude}`;
+  const { latitude, longitude } = JSON.parse(body);
+  
+  const url = `http://api.open-notify.org/iss-pass.json?lat=${latitude}&lon=${longitude}`;
   return request(url)
 }
 
